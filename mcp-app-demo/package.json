@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:ui": "INPUT=mcp-app.html vite build",
+    "build": "vite build",
     "serve": "tsx server.ts",
-    "dev": "npm run build:ui && npm run serve"
+    "dev": "INPUT=mcp-app.html npm run build && npm run serve"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.7.5",

@@ -10,7 +10,7 @@ import cors from "cors";
 import fs from "node:fs/promises";
 import { z } from "zod";
 
-const UI_URI = "ui://mcp-app-demo/main.html";
+const UI_URI = "ui://mcp-app/main.html";
 const PORT = Number(process.env.PORT ?? 3001);
 
 function buildMetrics(scope: string) {
@@ -27,10 +27,10 @@ function buildMetrics(scope: string) {
 }
 
 function createServer() {
-  const server = new McpServer({ name: "MCP App Demo", version: "1.0.0" });
+  const server = new McpServer({ name: "UI Server", version: "1.0.0" });
 
   // Serve the bundled single-file HTML as a ui:// resource
-  registerAppResource(server, "MCP App Demo UI", UI_URI, { mimeType: RESOURCE_MIME_TYPE }, async () => {
+  registerAppResource(server, "McpAppUI", UI_URI, { mimeType: RESOURCE_MIME_TYPE }, async () => {
     const html = await fs.readFile(new URL("./dist/mcp-app.html", import.meta.url), "utf-8");
     return { contents: [{ uri: UI_URI, mimeType: RESOURCE_MIME_TYPE, text: html }] };
   });
@@ -38,7 +38,7 @@ function createServer() {
   // Render tool — carries the UI metadata that mounts the resource
   registerAppTool(
     server,
-    "show_metrics",
+    "render_view",
     {
       title: "Show deployment metrics",
       description: "Display an interactive deployment metrics dashboard.",
