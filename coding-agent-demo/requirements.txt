@@ -1,0 +1,7 @@
+anthropic>=0.121.0
+
+# Only the target_repo sample app needs these — the agent itself depends on
+# `anthropic` alone.
+fastapi>=0.115
+httpx>=0.27
+pytest>=8.0
